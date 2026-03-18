@@ -6,21 +6,26 @@ timeoutInSeconds: 600
 
 shell: bash
 
-phases:
-  install:
-    commands:
-      - echo "Install phase started"
+steps:
+  - type: Command
+    name: "Install Step"
+    command: |
+      echo "Installing dependencies"
+      php -v || echo "PHP not installed"
 
-  build:
-    commands:
-      - echo "OCI DevOps build started"
-      - ls -la
-      - find . -name "*.php" -exec php -l {} \;
+  - type: Command
+    name: "Build Step"
+    command: |
+      echo "Running build"
+      ls -la
+      find . -name "*.php" -exec php -l {} \;
 
-  post_build:
-    commands:
-      - echo "Build completed"
+  - type: Command
+    name: "Post Build"
+    command: |
+      echo "Build completed successfully"
 
 artifacts:
-  files:
-    - '**/*'
+  - name: output
+    type: archive
+    location: .
