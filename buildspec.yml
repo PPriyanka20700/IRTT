@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing PHP
+      - php -v || echo "PHP not preinstalled"
+
+  build:
+    commands:
+      - echo Running PHP syntax check
+      - find . -type f -name "*.php" -exec php -l {} \;
+
+artifacts:
+  files:
+    - '**/*'
