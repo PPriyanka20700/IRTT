@@ -8,13 +8,13 @@ shell: bash
 
 steps:
   - type: Command
-    name: "Install Step"
+    name: "Install"
     command: |
-      echo "Installing dependencies"
+      echo "Installing environment"
       php -v || echo "PHP not installed"
 
   - type: Command
-    name: "Build Step"
+    name: "Build"
     command: |
       echo "Running build"
       ls -la
@@ -24,8 +24,3 @@ steps:
     name: "Post Build"
     command: |
       echo "Build completed successfully"
-
-artifacts:
-  - name: output
-    type: archive
-    location: .
